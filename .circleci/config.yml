@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   CCF:
     docker:
-      - image: docker pull ccfciteam/ccf-app-ci:latest
+      - image: ccfciteam/ccf-app-ci:latest
     steps:
       - run:
           name: CCF-build

@@ -6,4 +6,8 @@ jobs:
       - image: ccfciteam/ccf-app-ci:latest
 
     steps:
-      - run: docker ps 
+      - run: 
+            export CCF_VERSION=0.15.2
+            apt install wget
+            wget https://github.com/microsoft/CCF/releases/download/ccf-${CCF_VERSION}/ccf_${CCF_VERSION}_amd64.deb
+            apt install ./ccf_${CCF_VERSION}_amd64.deb

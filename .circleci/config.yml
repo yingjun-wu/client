@@ -6,4 +6,4 @@ jobs:
       - image: ccfciteam/ccf-app-ci:latest
 
     steps:
-      - run: echo "A first hello"
+      - run: echo `ls /opt`

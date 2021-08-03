@@ -11,5 +11,11 @@ jobs: # basic units of work in a run
       # Redirect MY_ENV_VAR into $BASH_ENV
       - run:
           name: "start"
-          command: ls /
+          command: |
+            apt install wget
+            wget https://github.com/microsoft/CCF/releases/download/ccf-0.15.2/ccf_0.15.2_amd64.deb
+            apt install ./ccf_0.15.2_amd64.deb
+            cd /opt/ccf-0.15.2
+            cd getting_started/setup_vm
+            run.sh app-dev.yml
       

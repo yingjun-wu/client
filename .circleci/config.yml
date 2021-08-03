@@ -29,3 +29,7 @@ jobs: # basic units of work in a run
       - run:
           name: "Print an env var stored in a Context"
           command: echo ${CONTEXT_ENV_VAR}
+      - run:
+          name: "echo an env"
+          command: |
+            echo $MY_ENV_VAR

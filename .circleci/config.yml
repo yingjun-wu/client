@@ -32,4 +32,4 @@ jobs: # basic units of work in a run
       - run:
           name: "echo an env"
           command: |
-            echo $MY_ENV_VAR
+            echo $DOCKER

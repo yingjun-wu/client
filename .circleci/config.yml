@@ -28,4 +28,4 @@ workflows:
               command: echo "upload"
           filters:
             branches:
-              only: master
+              only: main

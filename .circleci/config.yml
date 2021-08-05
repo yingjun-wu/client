@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  run_intergration_tests:
+    type: boolean
+    default: false
+
 jobs: # basic units of work in a run
   bar:
     machine: true
@@ -11,7 +16,8 @@ jobs: # basic units of work in a run
           command: echo "test"
 
 workflows:
-  build:
+  intergration_tests:
+    when: << pipeline.parameters.run_intergration_tests >>
     jobs:
       - bar:
          pre-steps:

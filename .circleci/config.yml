@@ -20,9 +20,12 @@ workflows:
     when: << pipeline.parameters.run_intergration_tests >>
     jobs:
       - bar:
-         pre-steps:
+          pre-steps:
            - run:
               command: echo "install current"
-         post-steps:
+          post-steps:
            - run:
               command: echo "upload"
+          filters:
+            branches:
+              only: master

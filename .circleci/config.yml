@@ -1,13 +1,31 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+
+parameters:
+  run_intergration_tests:
+    type: boolean
+    default: true
+
+jobs: # basic units of work in a run
+  bar:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          command: echo "build"
+      - run:
+          command: echo "test"
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  intergration_tests:
+    when: << pipeline.parameters.run_intergration_tests >>
     jobs:
-      - welcome/run
+      - bar:
+          pre-steps:
+           - run:
+              command: echo "install current"
+          post-steps:
+           - run:
+              command: echo "upload"
+          filters:
+            branches:
+              only: master

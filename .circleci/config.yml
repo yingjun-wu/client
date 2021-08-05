@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   run_intergration_tests:
     type: boolean
-    default: false
+    default: true
 
 jobs: # basic units of work in a run
   bar:

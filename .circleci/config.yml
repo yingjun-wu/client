@@ -1,32 +1,22 @@
 version: 2.1
 
 jobs: # basic units of work in a run
-  build:
-    docker: # use the Docker executor
-      # CircleCI node images available at: https://hub.docker.com/r/circleci/node/
-      - image: ccfciteam/ccf-app-ci:latest
-    working_directory: ~/project
-    steps: # steps that comprise the `build` job
-      - checkout # check out source code to working directory
-      # Run a step to setup an environment variable
-      # Redirect MY_ENV_VAR into $BASH_ENV
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - restore_cache:
-          keys:
-            - v3-dependencies-{{ checksum "test-requirments.txt"}}
-            - v3-dependencies-
+  bar:
+    machine: true
+    steps:
+      - checkout
       - run:
-          name: install dependencies
-          command: |
-            sudo apt install -y software-properties-common wget python3.8 python3-pip
-            ln -s -f /usr/bin/puthon3.8 /usr/bin/python
-            ln -s -f /usr/bin/puthon3.8 /usr/bin/python3
-            ln -s -f /usr/bin/pip3 /usr/bin/pip
-            pip install ccf
+          command: echo "build"
+      - run:
+          command: echo "test"
 
-            
-          environment:
-            CCF_VERSION: 0.15.2
-
-      
+workflows:
+  build:
+    jobs:
+      - bar:
+         pre-steps:
+           - run:
+              command: echo "install current"
+         post-steps:
+           - run:
+              command: echo "upload"

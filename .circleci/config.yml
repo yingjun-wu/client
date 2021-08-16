@@ -25,7 +25,7 @@ workflows:
               command: echo "install current"
           post-steps:
            - run:
-              command: echo "upload"
+              command: echo "upload1"
           filters:
             branches:
               only: main

@@ -1,5 +1,6 @@
 class Ant(modules.modules):
     name = modules.CharField(null=True, blank=True)
 
-    pl = 1
-    
+    p = 1
+    name = 
+    tile = 
